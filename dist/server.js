@@ -20,6 +20,6 @@ app.use(_express.default.json());
 app.use(_routes.default);
 app.use("/uploads", _express.default.static(_path.default.resolve(__dirname, "..", "uploads")));
 app.use((0, _celebrate.errors)());
-app.listen(3333, () => {
-  console.log("🚀 Server is running on port 3333");
+app.listen(3334, () => {
+  console.log("🚀 Server is running on port 3334");
 });

@@ -20,7 +20,7 @@ class PointsController {
     const points = await (0, _connection.default)("points").join("points_items", "points.id", "=", "points_items.point_id").whereIn("points_items.item_id", parsedItems).where("city", String(city)).where("uf", String(uf)).distinct().select("points.*");
     const serializedPoints = points.map(point => {
       return { ...point,
-        image_url: `http://192.168.15.10:3333/uploads/${point.image}`
+        image_url: `${process.env.API_URL}/uploads/${point.image}`
       };
     });
     return response.json(serializedPoints);
@@ -39,7 +39,7 @@ class PointsController {
     }
 
     const serializedPoint = { ...point,
-      image_url: `http://192.168.15.10:3333/uploads/${point.image}`
+      image_url: `${process.env.API_URL}/uploads/${point.image}`
     };
     const items = await (0, _connection.default)("items").join("points_items", "items.id", "=", "points_items.item_id").where("points_items.point_id", id).select("items.title");
     return response.json({
